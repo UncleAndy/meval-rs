@@ -6,12 +6,12 @@ use std::str::FromStr;
 
 type ContextHashMap<K, V> = FnvHashMap<K, V>;
 
-use extra_math::factorial;
-use shunting_yard::to_rpn;
+use crate::extra_math::factorial;
+use crate::shunting_yard::to_rpn;
 use std;
 use std::fmt;
-use tokenizer::{tokenize, Token};
-use Error;
+use crate::tokenizer::{tokenize, Token};
+use crate::Error;
 
 /// Representation of a parsed expression.
 ///
@@ -41,8 +41,8 @@ impl Expr {
 
     /// Evaluates the expression with variables given by the argument.
     pub fn eval_with_context<C: ContextProvider>(&self, ctx: C) -> Result<f64, Error> {
-        use tokenizer::Operation::*;
-        use tokenizer::Token::*;
+        use crate::tokenizer::Operation::*;
+        use crate::tokenizer::Token::*;
 
         let mut stack = Vec::with_capacity(16);
 
